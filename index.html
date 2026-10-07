@@ -3,55 +3,58 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Lúmina | Decorações e Locação de Peças</title>
-<meta name="description" content="Decoração e ambientação para aniversários, casamentos e eventos. Conte a sua ideia e peça um orçamento.">
+
+<title>Lúmina | Decorações e Locação de Peças para Festas e Eventos</title>
+<meta name="description" content="Decoração de festas, casamentos e aniversários em Lúmina. Locação de peças exclusivas, arcos de balões e cenários personalizados. Peça já o seu orçamento!">
+
+<link rel="canonical" href="https://www.luminafestas.com.br/">
+<meta name="robots" content="index, follow">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Lúmina Decorações e Locação de Peças",
+  "image": "https://www.luminafestas.com.br/logo.jpg",
+  "@id": "https://www.luminafestas.com.br/",
+  "url": "https://www.luminafestas.com.br/",
+  "telephone": "",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "BR"
+  },
+  "sameAs": [
+    "https://www.instagram.com/lumina.festas"
+  ],
+  "description": "Decoração e ambientação para aniversários, casamentos e eventos."
+}
+</script>
+
 <style>
-/* ==========================================================================
-   1. VARIÁVEIS DE SISTEMA E TEMAS (PALETA OFICIAL LÚMINA)
-   ========================================================================== */
 :root {
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
   
-  --bg: #F8F5EE;
-  --surface: #FFFFFF;
-  --ink: #4D1B52;
-  --muted: #8E7B90;
-  --line: #D9CAB3;
-  --glow: #E9C46A;
-  --glow-a: rgba(233, 196, 106, 0.4);
-  
-  --btn: #8A3091;
-  --btn-ink: #F8F5EE;
-  --focus: #E9C46A;
-  
-  --display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
-  --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-}
-
-html[data-theme="dark"] {
   --bg: #260D29;
   --surface: #3D1541;
   --ink: #F8F5EE;
   --muted: #D9CAB3;
   --line: #5E2163;
+  --glow: #E9C46A;
+  --glow-a: rgba(233, 196, 106, 0.2);
+  
   --btn: #E9C46A;
   --btn-ink: #260D29;
   --focus: #E9C46A;
-  --glow-a: rgba(233, 196, 106, 0.2);
-}
-
-html[data-theme="dark"] .sec {
-  background-color: var(--bg);
-}
-html[data-theme="dark"] .sec.band {
-  background-color: var(--surface);
+  
+  --display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: inherit; }
@@ -69,7 +72,6 @@ body {
   font-family: var(--body);
   font-size: 1.0625rem;
   line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3 {
@@ -95,9 +97,6 @@ img, svg { max-width: 100%; }
   margin-inline: auto;
 }
 
-/* ==========================================================================
-   3. BOTÕES E PILS
-   ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -130,16 +129,21 @@ img, svg { max-width: 100%; }
 .btn:hover { filter: brightness(1.08); }
 
 .pill {
-  min-height: 40px;
-  padding: .4rem 1rem;
+  min-height: 42px;
+  padding: .5rem 1.4rem;
   border-radius: 999px;
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid var(--line);
   background: transparent;
   color: var(--ink);
   font: 500 .95rem var(--body);
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  transition: all 0.25s ease;
+}
+
+.pill:hover {
+  border-color: var(--glow);
+  background: color-mix(in srgb, var(--glow) 15%, transparent);
 }
 
 .pill[aria-pressed="true"] {
@@ -168,9 +172,6 @@ img, svg { max-width: 100%; }
   background: var(--surface);
 }
 
-/* ==========================================================================
-   4. CABEÇALHO E NAVEGAÇÃO
-   ========================================================================== */
 .top {
   position: sticky;
   top: env(safe-area-inset-top, 0px);
@@ -238,45 +239,38 @@ img, svg { max-width: 100%; }
   .nav a:not(.btn) { padding: .85rem 0; border-bottom: 1px solid var(--line); }
 }
 
-/* ==========================================================================
-   5. SEÇÃO HERO (TEXTO À ESQUERDA + CARROSSEL À DIREITA)
-   ========================================================================== */
-.hero { 
-  position: relative; 
-  overflow: hidden; 
-  padding: 60px 0 88px; 
-}
-
-.hero-grid {
+.hero-split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.1fr 1fr;
   align-items: center;
+  gap: 3rem;
+  padding: 80px 0 96px;
+  width: min(1120px, 100% - 40px);
+  margin-inline: auto;
 }
 
-.hero-copy h1 { 
-  font-size: clamp(2.5rem, 6vw, 4.8rem); 
-  font-weight: 800; 
-  line-height: .96; 
-  letter-spacing: -.035em; 
+.hero-copy h1 {
+  font-size: clamp(2.5rem, 5.2vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -.035em;
 }
 
-.hero-copy p.lead { 
-  margin-top: 1.4rem; 
-  font-size: 1.15rem; 
-  color: var(--muted); 
-  max-width: 34em; 
+.hero-copy p.lead {
+  margin-top: 1.4rem;
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 32em;
 }
 
-.actions { 
-  display: flex; 
-  flex-wrap: wrap; 
-  gap: .8rem; 
-  margin-top: 2rem; 
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin-top: 2rem;
 }
 
-/* Estilização do Carrossel à Direita */
-.slider-container-wrapper {
+.hero-slider-wrap {
   position: relative;
   width: 100%;
 }
@@ -284,25 +278,26 @@ img, svg { max-width: 100%; }
 .slider-container {
   position: relative;
   width: 100%;
-  height: 440px;
+  height: 420px;
   border-radius: 28px;
   overflow: hidden;
   border: 2px solid var(--line);
-  background: var(--bg);
-  box-shadow: 0 12px 36px rgba(77, 27, 82, 0.12);
+  background: #000;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
 }
 
 .slider-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.6s ease-in-out;
-  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
 
 .slider-slide.active {
   opacity: 1;
-  pointer-events: auto;
+  visibility: visible;
+  z-index: 2;
 }
 
 .slider-slide img {
@@ -312,21 +307,20 @@ img, svg { max-width: 100%; }
   display: block;
 }
 
-/* Botões de Navegação (Setas) */
 .slider-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  background: rgba(61, 21, 65, 0.85);
   color: var(--ink);
   border: 2px solid var(--line);
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   cursor: pointer;
   z-index: 10;
   transition: background 0.2s, border-color 0.2s, transform 0.2s;
@@ -335,23 +329,22 @@ img, svg { max-width: 100%; }
 .slider-btn:hover {
   background: var(--surface);
   border-color: var(--glow);
-  transform: translateY(-50%) scale(1.05);
+  transform: translateY(-50%) scale(1.08);
 }
 
 .slider-btn.prev { left: 16px; }
 .slider-btn.next { right: 16px; }
 
-/* Indicadores de Pontos (Dots) */
 .slider-dots {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   margin-top: 14px;
 }
 
 .slider-dot {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--line);
   border: none;
@@ -360,34 +353,67 @@ img, svg { max-width: 100%; }
 }
 
 .slider-dot.active {
-  background: var(--btn);
-  transform: scale(1.2);
+  background: var(--glow);
+  transform: scale(1.3);
 }
 
-@media (max-width: 960px) {
-  .hero-grid {
+@media (max-width: 900px) {
+  .hero-split {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 3rem;
+    padding-top: 40px;
   }
   .slider-container {
     height: 320px;
   }
 }
 
-/* ==========================================================================
-   6. SEÇÕES
-   ========================================================================== */
 .sec { padding: 96px 0; }
 .sec.band { background: var(--surface); }
 .sec-head { max-width: 640px; margin-bottom: 2.6rem; }
 .sec-head h2 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; }
 .sec-head p { margin-top: .9rem; color: var(--muted); }
 
-.svc-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 3rem; }
-.svc { display: flex; justify-content: space-between; align-items: center; gap: 1.2rem; padding: 1.5rem 0; border-top: 1.5px solid var(--line); }
-.svc h3 { font-size: 1.45rem; font-weight: 700; letter-spacing: -.015em; }
-.svc p { margin-top: .35rem; color: var(--muted); font-size: 1rem; }
-@media (max-width: 860px) { .svc-list { grid-template-columns: 1fr; } .svc { align-items: flex-start; flex-direction: column; gap: .9rem; } }
+.svc-list { 
+  list-style: none; 
+  margin: 0; 
+  padding: 0; 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  column-gap: 4rem; 
+}
+
+.svc { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 1.5rem; 
+  padding: 2rem 0; 
+  border-top: 1.5px solid var(--line); 
+}
+
+.svc-info {
+  flex: 1;
+}
+
+.svc h3 { 
+  font-size: 1.35rem; 
+  font-weight: 700; 
+  letter-spacing: -.015em; 
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+}
+
+.svc p { 
+  color: var(--muted); 
+  font-size: 0.98rem; 
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) { 
+  .svc-list { grid-template-columns: 1fr; column-gap: 0; } 
+  .svc { align-items: flex-start; flex-direction: column; gap: 1rem; padding: 1.8rem 0; } 
+}
 
 .tabs { display: flex; gap: .6rem; overflow-x: auto; padding-bottom: .4rem; margin-bottom: 1.8rem; -webkit-overflow-scrolling: touch; }
 .gal { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.4rem; }
@@ -447,7 +473,7 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="#inicio" aria-label="Lúmina, início">
-      <img src="midias/715304533_4303674126572959_7087238607653655421_n.jpg" alt="Logótipo Lúmina" class="logo-img" onerror="this.style.display='none'">
+      <img src="midias/715304533_4303674126572959_7087238607653655421_n.jpg" alt="Logótipo Lúmina" class="logo-img" loading="lazy" onerror="this.style.display='none'">
       <span>Lúmina</span>
     </a>
     
@@ -464,37 +490,36 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
 </header>
 
 <main id="conteudo">
-  <!-- SEÇÃO HERO (TEXTO À ESQUERDA + CARROSSEL À DIREITA) -->
-  <section class="hero" id="inicio">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <h1>Iluminando momentos que merecem ser celebrados.</h1>
-        <p class="lead">Decorações e locação de peças para aniversários, casamentos e eventos. Conte a sua ideia e receba uma proposta.</p>
-        <div class="actions">
-          <a class="btn" href="#orcamento">Pedir orçamento</a>
-          <a class="btn ghost" href="#galeria">Ver galeria</a>
-        </div>
+  <!-- HERO EXATAMENTE COMO NA REFERÊNCIA COM AS IMAGENS DA PASTA MIDIAS -->
+  <section class="hero-split" id="inicio">
+    <div class="hero-copy">
+      <h1>Iluminando momentos que merecem ser celebrados.</h1>
+      <p class="lead">Decorações e locação de peças para aniversários, casamentos e eventos. Conte a sua ideia e receba uma proposta.</p>
+      <div class="actions">
+        <a class="btn" href="#orcamento" id="btnHeroOrcamento">Pedir orçamento</a>
+        <a class="btn ghost" href="#galeria">Ver galeria</a>
       </div>
+    </div>
 
-      <div class="slider-container-wrapper">
-        <div class="slider-container" id="sliderContainer">
-          <div class="slider-slide active"><img src="midias/730905079_17980503675018932_8723131656600272452_n.jpg" alt="Decoração Lúmina"></div>
-          <div class="slider-slide"><img src="midias/695929087_17974131999018932_4272779349584979595_n.jpg" alt="Decoração Lúmina"></div>
-          <div class="slider-slide"><img src="midias/730608317_17980499961018932_3729423466734808812_n.jpg" alt="Decoração Lúmina"></div>
-          <div class="slider-slide"><img src="midias/772092912_17986216419018932_2969540390876475316_n.jpg" alt="Decoração Lúmina"></div>
-          <div class="slider-slide"><img src="midias/744916561_17981892870018932_7524954898810482407_n.jpg" alt="Decoração Lúmina"></div>
-          <div class="slider-slide"><img src="midias/705589744_17975209263018932_1773205791364689434_n.jpg" alt="Decoração Lúmina"></div>
-          <div class="slider-slide"><img src="midias/696296631_17974026324018932_2055007114250559748_n.jpg" alt="Decoração Lúmina"></div>
-          <div class="slider-slide"><img src="midias/709014483_17975956893018932_1004913115296922019_n.jpg" alt="Decoração Lúmina"></div>
+    <div class="hero-slider-wrap">
+      <div class="slider-container" id="sliderContainer">
+        <div class="slider-slide active"><img src="midias/730905079_17980503675018932_8723131656600272452_n.jpg" alt="Decoração Lúmina"></div>
+        <div class="slider-slide"><img src="midias/695929087_17974131999018932_4272779349584979595_n.jpg" alt="Decoração Lúmina" loading="lazy"></div>
+        <div class="slider-slide"><img src="midias/730608317_17980499961018932_3729423466734808812_n.jpg" alt="Decoração Lúmina" loading="lazy"></div>
+        <div class="slider-slide"><img src="midias/772092912_17986216419018932_2969540390876475316_n.jpg" alt="Decoração Lúmina" loading="lazy"></div>
+        <div class="slider-slide"><img src="midias/744916561_17981892870018932_7524954898810482407_n.jpg" alt="Decoração Lúmina" loading="lazy"></div>
+        <div class="slider-slide"><img src="midias/705589744_17975209263018932_1773205791364689434_n.jpg" alt="Decoração Lúmina" loading="lazy"></div>
+        <div class="slider-slide"><img src="midias/696296631_17974026324018932_2055007114250559748_n.jpg" alt="Decoração Lúmina" loading="lazy"></div>
+        <div class="slider-slide"><img src="midias/709014483_17975956893018932_1004913115296922019_n.jpg" alt="Decoração Lúmina" loading="lazy"></div>
 
-          <button class="slider-btn prev" id="sliderPrev" aria-label="Anterior">&#10094;</button>
-          <button class="slider-btn next" id="sliderNext" aria-label="Seguinte">&#10095;</button>
-        </div>
-        <div class="slider-dots" id="sliderDots"></div>
+        <button class="slider-btn prev" id="sliderPrev" aria-label="Anterior">&#10094;</button>
+        <button class="slider-btn next" id="sliderNext" aria-label="Seguinte">&#10095;</button>
       </div>
+      <div class="slider-dots" id="sliderDots"></div>
     </div>
   </section>
 
+  <!-- SECÇÃO DE SERVIÇOS EM DUAS COLUNAS COM BOTÕES À DIREITA -->
   <section class="sec" id="servicos">
     <div class="wrap">
       <div class="sec-head">
@@ -644,7 +669,7 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
     localStorage.setItem("lumina_theme", theme);
   }
 
-  const savedTheme = localStorage.getItem("lumina_theme") || "light";
+  const savedTheme = localStorage.getItem("lumina_theme") || "dark";
   applyTheme(savedTheme);
 
   themeToggleBtn.addEventListener("click", () => {
@@ -652,7 +677,7 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
     applyTheme(currentTheme === "dark" ? "light" : "dark");
   });
 
-  /* Lógica do Slider Interativo */
+  /* Slider Interativo */
   const slides = document.querySelectorAll(".slider-slide");
   const dotsContainer = document.getElementById("sliderDots");
   let currentSlide = 0;
@@ -713,7 +738,7 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
   const CONFIG = {
     nome: "Lúmina",
     instagram: "lumina.festas",
-    whatsapp: "", 
+    whatsapp: "5511999999999",
     
     servicos: [
       { id: "baloes",   nome: "Arcos de balões",        desc: "Arcos orgânicos, colunas e composições nas cores da sua festa." },
@@ -741,7 +766,7 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
     ]
   };
 
-  const $= (selector, context = document) => context.querySelector(selector);          const$$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
+  const $ = (selector, context = document) => context.querySelector(selector);             const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
   const prefersReducedMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const selectedServices = {};
@@ -750,7 +775,7 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
 
   svcListContainer.innerHTML = CONFIG.servicos.map(s => `
     <li class="svc">
-      <div>
+      <div class="svc-info">
         <h3>${s.nome}</h3>
         <p>${s.desc}</p>
       </div>
@@ -887,7 +912,7 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
       `;
     }
 
-    return `<svg viewBox="0 0 400 300" role="img" aria-label="${item.titulo}" preserveAspectRatio="xMidYMid slice">${svgInnerMarkup}</svg>`;
+    return `<svg viewBox="0 0 400 300" role="img" aria-label="${item.titulo}" preserveAspectRatio="xMidYMid slice" loading="lazy">${svgInnerMarkup}</svg>`;
   }
 
   const categories = ["Todas"];
@@ -1086,6 +1111,18 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
     }
   }
 
+  function trackConversion(actionCategory, actionLabel) {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", actionCategory, {
+        "event_category": "Conversão",
+        "event_label": actionLabel
+      });
+    }
+    if (typeof window.fbq === "function") {
+      window.fbq("track", "Lead", { content_name: actionLabel });
+    }
+  }
+
   quoteForm.addEventListener("submit", e => {
     e.preventDefault();
     if (!quoteForm.checkValidity()) {
@@ -1108,17 +1145,26 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
 
     statusElement.textContent = "";
     resultContainer.hidden = false;
+    
+    trackConversion("Gerar_Orcamento", "Formulario Preenchido");
+
     resultContainer.scrollIntoView({
       behavior: prefersReducedMotion ? "auto" : "smooth",
       block: "center"
     });
   });
 
-  document.getElementById("copyBtn").addEventListener("click", async () => {
+  $("#copyBtn").addEventListener("click", async () => {
     const success = await copyToClipboard();
     statusElement.textContent = success
       ? "Mensagem copiada. É só colar na conversa."
       : "Não foi possível copiar automaticamente. Selecione o texto acima e copie.";
+    
+    if (success) trackConversion("Copiar_Mensagem", "Clipboard Copiado");
+  });
+
+  $("#waLink").addEventListener("click", () => {
+    trackConversion("Clique_WhatsApp", "Contato via WhatsApp");
   });
 
   $("#igLink").addEventListener("click", async () => {
@@ -1126,6 +1172,8 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
     statusElement.textContent = success
       ? "Mensagem copiada. Cole na conversa do Instagram, que abre em outra aba."
       : "Abra a conversa e cole a mensagem. Se não copiou, utilize o botão Copiar mensagem.";
+    
+    trackConversion("Clique_Instagram", "Contato via Instagram");
   });
 
   $("#year").textContent = new Date().getFullYear();
