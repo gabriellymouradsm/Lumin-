@@ -449,18 +449,32 @@ dialog::backdrop { background: rgba(38, 13, 41, .8); }
 .chips .empty { color: var(--muted); font-size: .95rem; }
 
 form.card { background: var(--bg); border: 1.5px solid var(--line); border-radius: 28px; padding: 1.8rem; }
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-@media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
-.field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; }
+@media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; width: 100%; }
 .field label { font-weight: 600; font-size: .95rem; }
-.field input, .field select, .field textarea { font: 400 1rem var(--body); color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; padding: .75rem .9rem; min-height: 48px; width: 100%; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+.field input, .field select, .field textarea { 
+  font: 400 1rem var(--body); 
+  color: var(--ink); 
+  background: var(--surface); 
+  border: 1.5px solid var(--line); 
+  border-radius: 14px; 
+  padding: .75rem .9rem; 
+  min-height: 48px; 
+  width: 100%; 
+  max-width: 100%;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+}
 .field textarea { min-height: 110px; resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--focus); }
 .hint { color: var(--muted); font-size: .9rem; }
 
 .result { margin-top: 1.6rem; padding: 1.4rem; border-radius: 22px; background: var(--surface); border: 1.5px solid var(--ink); }
 .result h3 { font-size: 1.35rem; }
-.result textarea { width: 100%; min-height: 190px; margin: 1rem 0; font: 400 .95rem/1.5 var(--body); color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: 14px; padding: .8rem; }
+.result textarea { width: 100%; min-height: 190px; margin: 1rem 0; font: 400 .95rem/1.5 var(--body); color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: 14px; padding: .8rem; box-sizing: border-box; }
 .status { margin-top: .8rem; color: var(--muted); font-size: .95rem; min-height: 1.4em; }
 
 footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
@@ -473,7 +487,7 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="#inicio" aria-label="Lúmina, início">
-      <img src="midias/715304533_4303674126572959_7087238607653655421_n.jpg" alt="Logótipo Lúmina" class="logo-img" loading="lazy" onerror="this.style.display='none'">
+      <img src="logo.jpg" alt="Logótipo Lúmina" class="logo-img" loading="lazy" onerror="this.style.display='none'">
       <span>Lúmina</span>
     </a>
     
@@ -490,7 +504,6 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
 </header>
 
 <main id="conteudo">
-  <!-- HERO EXATAMENTE COMO NA REFERÊNCIA COM AS IMAGENS DA PASTA MIDIAS -->
   <section class="hero-split" id="inicio">
     <div class="hero-copy">
       <h1>Iluminando momentos que merecem ser celebrados.</h1>
@@ -519,7 +532,6 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
     </div>
   </section>
 
-  <!-- SECÇÃO DE SERVIÇOS EM DUAS COLUNAS COM BOTÕES À DIREITA -->
   <section class="sec" id="servicos">
     <div class="wrap">
       <div class="sec-head">
