@@ -36,7 +36,7 @@
 </script>
 
 <style>
-:root {
+:root, [data-theme="dark"] {
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -52,9 +52,20 @@
   --btn: #E9C46A;
   --btn-ink: #260D29;
   --focus: #E9C46A;
+}
+
+[data-theme="light"] {
+  --bg: #FDFBF7;
+  --surface: #F3ECE1;
+  --ink: #260D29;
+  --muted: #5E4C60;
+  --line: #E2D2BE;
+  --glow: #B8860B;
+  --glow-a: rgba(184, 134, 11, 0.15);
   
-  --display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
-  --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --btn: #260D29;
+  --btn-ink: #F8F5EE;
+  --focus: #B8860B;
 }
 
 *, *::before, *::after { box-sizing: inherit; }
@@ -72,6 +83,12 @@ body {
   font-family: var(--body);
   font-size: 1.0625rem;
   line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+:root {
+  --display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 h1, h2, h3 {
@@ -149,7 +166,7 @@ img, svg { max-width: 100%; }
 .pill[aria-pressed="true"] {
   background: var(--glow);
   border-color: var(--glow);
-  color: #260D29;
+  color: var(--btn-ink);
   font-weight: 600;
 }
 
@@ -435,7 +452,7 @@ dialog::backdrop { background: rgba(38, 13, 41, .8); }
 
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6rem; counter-reset: s; }
 .steps li { position: relative; padding-top: 3.6rem; }
-.steps li::before { counter-increment: s; content: counter(s); position: absolute; top: 0; left: 0; width: 2.7rem; height: 2.7rem; border-radius: 50%; background: var(--glow); color: #260D29; display: grid; place-items: center; font: 800 1.2rem var(--display); box-shadow: 0 0 0 6px color-mix(in srgb, var(--glow) 28%, transparent); }
+.steps li::before { counter-increment: s; content: counter(s); position: absolute; top: 0; left: 0; width: 2.7rem; height: 2.7rem; border-radius: 50%; background: var(--glow); color: var(--btn-ink); display: grid; place-items: center; font: 800 1.2rem var(--display); box-shadow: 0 0 0 6px color-mix(in srgb, var(--glow) 28%, transparent); }
 .steps h3 { font-size: 1.25rem; font-weight: 700; }
 .steps p { margin-top: .4rem; color: var(--muted); font-size: 1rem; }
 @media (max-width: 860px) { .steps { grid-template-columns: 1fr 1fr; } }
@@ -444,23 +461,37 @@ dialog::backdrop { background: rgba(38, 13, 41, .8); }
 .quote { display: grid; grid-template-columns: 1fr 1.25fr; gap: 3rem; align-items: start; }
 @media (max-width: 900px) { .quote { grid-template-columns: 1fr; } }
 .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.4rem; min-height: 2.4rem; }
-.chip { display: inline-flex; align-items: center; gap: .4rem; padding: .3rem .5rem .3rem .9rem; border-radius: 999px; background: var(--glow); color: #260D29; font-weight: 600; font-size: .95rem; }
-.chip button { border: 0; background: rgba(38, 13, 41, .14); color: #260D29; width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-size: 1rem; line-height: 1; }
+.chip { display: inline-flex; align-items: center; gap: .4rem; padding: .3rem .5rem .3rem .9rem; border-radius: 999px; background: var(--glow); color: var(--btn-ink); font-weight: 600; font-size: .95rem; }
+.chip button { border: 0; background: rgba(38, 13, 41, .14); color: var(--btn-ink); width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-size: 1rem; line-height: 1; }
 .chips .empty { color: var(--muted); font-size: .95rem; }
 
 form.card { background: var(--bg); border: 1.5px solid var(--line); border-radius: 28px; padding: 1.8rem; }
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-@media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
-.field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; }
+@media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; width: 100%; }
 .field label { font-weight: 600; font-size: .95rem; }
-.field input, .field select, .field textarea { font: 400 1rem var(--body); color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; padding: .75rem .9rem; min-height: 48px; width: 100%; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+.field input, .field select, .field textarea { 
+  font: 400 1rem var(--body); 
+  color: var(--ink); 
+  background: var(--surface); 
+  border: 1.5px solid var(--line); 
+  border-radius: 14px; 
+  padding: .75rem .9rem; 
+  min-height: 48px; 
+  width: 100%; 
+  max-width: 100%;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+}
 .field textarea { min-height: 110px; resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--focus); }
 .hint { color: var(--muted); font-size: .9rem; }
 
 .result { margin-top: 1.6rem; padding: 1.4rem; border-radius: 22px; background: var(--surface); border: 1.5px solid var(--ink); }
 .result h3 { font-size: 1.35rem; }
-.result textarea { width: 100%; min-height: 190px; margin: 1rem 0; font: 400 .95rem/1.5 var(--body); color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: 14px; padding: .8rem; }
+.result textarea { width: 100%; min-height: 190px; margin: 1rem 0; font: 400 .95rem/1.5 var(--body); color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: 14px; padding: .8rem; box-sizing: border-box; }
 .status { margin-top: .8rem; color: var(--muted); font-size: .95rem; min-height: 1.4em; }
 
 footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
@@ -473,7 +504,8 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="#inicio" aria-label="Lúmina, início">
-      <img src="midias/715304533_4303674126572959_7087238607653655421_n.jpg" alt="Logótipo Lúmina" class="logo-img" loading="lazy" onerror="this.style.display='none'">
+      <!-- Certifique-se de que o nome do ficheiro da logo dentro de 'midias/' está correto -->
+      <img src="midias/715304533_4303674126572959_7087238607653655421_n.jpg" alt="Logótipo Lúmina" class="logo-img" loading="lazy" onerror="this.src='logo.jpg'; this.onerror=function(){this.style.display='none'};">
       <span>Lúmina</span>
     </a>
     
@@ -490,7 +522,6 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
 </header>
 
 <main id="conteudo">
-  <!-- HERO EXATAMENTE COMO NA REFERÊNCIA COM AS IMAGENS DA PASTA MIDIAS -->
   <section class="hero-split" id="inicio">
     <div class="hero-copy">
       <h1>Iluminando momentos que merecem ser celebrados.</h1>
@@ -519,7 +550,6 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
     </div>
   </section>
 
-  <!-- SECÇÃO DE SERVIÇOS EM DUAS COLUNAS COM BOTÕES À DIREITA -->
   <section class="sec" id="servicos">
     <div class="wrap">
       <div class="sec-head">
@@ -1168,8 +1198,9 @@ footer { padding: 48px 0 64px; border-top: 1px solid var(--line); }
   });
 
   $("#igLink").addEventListener("click", async () => {
-    const success = await copyToClipboard();
-    statusElement.textContent = success
+    const success = await copyToQueryClipboard(); // fallback handled
+    const successCopy = await copyToClipboard();
+    statusElement.textContent = successCopy
       ? "Mensagem copiada. Cole na conversa do Instagram, que abre em outra aba."
       : "Abra a conversa e cole a mensagem. Se não copiou, utilize o botão Copiar mensagem.";
     
